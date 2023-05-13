@@ -6,3 +6,6 @@ The current trend in crack detection methods is leaning towards the use of machi
 
 # Data
 The data we have utilized is derived from two separate studies, namely: [CrackSeg9k](https://github.com/Dhananjay42/crackseg9k) and [KhanCrack](https://github.com/khanhha/crack_segmentation).
+
+# Code and Model
+All of the code and training models will be promptly released.
