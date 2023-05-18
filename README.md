@@ -11,7 +11,7 @@ The data we have utilized is derived from two separate studies, namely: [CrackSe
 All of the code will be promptly released.
 
 # Model
-We expose all our models as TensorRT, including SOTA for comparison in all experiments. Note that all inputs to the TensorRT engine are **1 × 3 × 400 × 400**. We use TensorRT 8.6.1
+We expose all our models as TensorRT, including SOTA for comparison in all experiments. Note that all inputs to the TensorRT engine are **1 × 3 × 400 × 400**. We use TensorRT 8.6.1.
 | Model |
 | --- |
 | [U-Net](https://chdeducn-my.sharepoint.com/:u:/g/personal/2018024008_chd_edu_cn/EYoEi_aQczxOswVyAi8FQBgBYSYXalI8oZKRszWHgbzZwg?e=XuFGzf) |
