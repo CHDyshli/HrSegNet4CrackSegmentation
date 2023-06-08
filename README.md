@@ -8,7 +8,7 @@ The current trend in crack detection methods is leaning towards the use of machi
 The data we have utilized is derived from two separate studies, namely: [CrackSeg9k](https://github.com/Dhananjay42/crackseg9k) and [KhanCrack](https://github.com/khanhha/crack_segmentation).
 
 # Code 
-All of the code will be promptly released.
+Our code will be released soon.
 
 # Model
 We expose all our models as TensorRT, including SOTA for comparison in all experiments. Note that all inputs to the TensorRT engine are **1 × 3 × 400 × 400**. We use TensorRT 8.6.1.
