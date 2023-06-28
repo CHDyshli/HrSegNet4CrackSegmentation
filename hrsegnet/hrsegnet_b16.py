@@ -9,7 +9,10 @@ from paddleseg.models.layers.layer_libs import SyncBatchNorm
 import paddle.nn.functional as F
 
 
-
+"""
+This file is identical to the default HrSegNet, 
+except for the modification of the parameter base
+"""
 
 # features
 # 1. The size of the high-resolution path remains constant throughout the process
@@ -32,11 +35,11 @@ class HrSegNet(nn.Layer):
         
         in_channels (int, optional): The channels of input image. Default: 3.
 
-        base (int, optional): The base channel number of the model. Default: 32.
+        base (int, optional): The base channel number of the model. Default: 16.
     """
     def __init__(self,
                  in_channels=3, # input channel
-                 base=32, # base channel of the model, 
+                 base=16, # base channel of the model, 
                  num_classes=2 # number of classes
                  ):
         super(HrSegNet, self).__init__()
