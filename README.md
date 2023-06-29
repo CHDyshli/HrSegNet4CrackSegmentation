@@ -7,8 +7,17 @@ The current trend in crack detection methods is leaning towards the use of machi
 # Data
 The data we have utilized is derived from two separate studies, namely: [CrackSeg9k](https://github.com/Dhananjay42/crackseg9k) and [KhanCrack](https://github.com/khanhha/crack_segmentation).
 
-# Code 
-我们的实现基于paddle。因此，如果你需要使用这个模型或者复现我们的结果，你需要安装paddle的教程，安装paddle和paddleseg。
+# Installation
+The code requires python>=3.8, as well as paddle=2.4.1 and paddleseg=2.7.0 and OpenCV= 4.7.0. You can follow the instructions [paddle](https://github.com/PaddlePaddle/Paddle) and [paddleseg](https://github.com/PaddlePaddle/PaddleSeg) to install all the dependencies. If you need to reproduce the results, you have to install paddle with CUDA support.
+
+# Usage
+Once paddle and paddleseg are installed, you can use our published models very easily.  
+We start by describing the contents of each directory. The directory `hrsegnet` defines the high-resolution crack segmentation model we designed, the three model files are almost identical except for the parameter `base`. The directory `participated_models` contains the models we compared in our experiments. The directory `configs` is the configuration files for all models, i.e. the details of all training and testing parameters.  
+The easiest way to use our models is to use [paddleseg](https://github.com/PaddlePaddle/PaddleSeg). One can put the files of the desired models into the models directory of paddleseg, registering the model using `@manager.MODELS.add_component`. For training the model use the configuration files in the `configs` we provide. 
+For datasets, we provide [CrackSeg9k](https://github.com/Dhananjay42/crackseg9k)  and [KhanCrack](https://github.com/khanhha/crack_segmentation) for [download](). Also, in order that one can reproduce our results, we provide files for both training, validation, and test sets in `data`.
+
+
+
 
 # Model
 We expose all our models as TensorRT, including SOTA for comparison in all experiments. Note that all inputs to the TensorRT engine are **1 × 3 × 400 × 400**. We use TensorRT 8.6.1.
