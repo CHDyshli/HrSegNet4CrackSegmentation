@@ -23,7 +23,7 @@ The code requires python>=3.8, as well as paddle=2.4.1 and paddleseg=2.7.0 and O
 # Usage
 Once paddle and paddleseg are installed, you can use our published models very easily.  
 
-We start by describing the contents of each directory. The directory `hrsegnet` defines the high-resolution crack segmentation model we designed, the three model files are almost identical except for the parameter `base`. The directory `participated_models` contains the models we compared in our experiments. The directory `configs` is the configuration files for all models, i.e. the details of all training and testing parameters.  
+We start by describing the contents of each directory. The directory `models` defines the high-resolution crack segmentation model we designed, the three model files are almost identical except for the parameter `base`. The model files we are comparing are also included. The directory `configs` is the configuration files for all models, i.e. the details of all training and testing parameters.  
 
 The easiest way to use our models is to use [paddleseg](https://github.com/PaddlePaddle/PaddleSeg). One can put the files of the desired models into the models directory of paddleseg, registering the model using `@manager.MODELS.add_component`. For training the model use the configuration files in the `configs` we provide. 
 

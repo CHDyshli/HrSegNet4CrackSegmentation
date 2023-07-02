@@ -1,0 +1,2 @@
+1. In the original paper of [crackseg9k](https://github.com/Dhananjay42/crackseg9k), it was found that the images and labels did not align perfectly, which was also confirmed in [correct_crackseg9k](https://github.com/LovingThresh/correct_crackseg9k_dataset). Therefore, we directly removed the images and labels that could not be aligned.
+2. After modification, there were a total of 8751 pairs of images and labels.
