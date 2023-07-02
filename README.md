@@ -5,8 +5,8 @@ Real-time High-Resolution Neural Network with Semantic Guidance for Crack Segmen
 The current trend in crack detection methods is leaning towards the use of machine learning or deep learning. This is because deep learning-based methods can autonomously extract features from images, thereby avoiding the low stability caused by manually designed operators. However, there are still some problems with the current deep learning-based crack segmentation algorithms. Firstly, the vast majority of research is based on the modification and improvement of commonly used scene segmentation algorithms, with no specifically designed for crack segmentation tasks. Secondly, crack detection is increasingly reliant on edge devices, such as drones and vehicle-mounted cameras. Therefore, the model must be lightweight to achieve real-time segmentation efficiency. However, there is currently limited research in this area. We propose a high-resolution neural network with semantic guidance for real-time crack segmentation, named HrSegNet.
 
 # Update 
-2023-07-2
-We are conducting more comparative experiments while simultaneously using a new dataset of road surfaces. The results and data will be published soon.
+2023-07-02
+We are conducting more comparative experiments while using a new pavement dataset that is being manually annotated at the expert level. The results and data will be published soon. We will release the trained model parameters so that you can quickly test them.
 ### Model Architecture  
 ![Alt text](./fig/fig1.png)
 ### [Seg-Grad-CAM](https://arxiv.org/abs/2002.11434)  
