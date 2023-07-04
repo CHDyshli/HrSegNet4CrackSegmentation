@@ -2,8 +2,8 @@
 
 train_dataset:
   type: Dataset
-  dataset_root: data/Crack_seg_lys
-  train_path: data/Crack_seg_lys/train.txt
+  dataset_root: data/crackseg9k
+  train_path: data/crackseg9k/train.txt
   num_classes: 2
   mode: train
   transforms:
@@ -22,8 +22,8 @@ train_dataset:
 
 val_dataset:
   type: Dataset
-  dataset_root: data/Crack_seg_lys
-  val_path: data/Crack_seg_lys/val.txt
+  dataset_root: data/crackseg9k
+  val_path: data/crackseg9k/val.txt
   num_classes: 2
   mode: val
   transforms:
