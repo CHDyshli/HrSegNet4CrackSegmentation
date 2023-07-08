@@ -1,3 +1,5 @@
+batch_size: 32
+iters: 100000
 
 
 train_dataset:
@@ -30,33 +32,26 @@ val_dataset:
     - type: Normalize
 
 
-batch_size: 32
-iters: 100000
-
 model:
-  type: PSPNet
+  type: BiSeNetV2
   num_classes: 2
-  backbone:
-    type: ResNet18_vd
-    output_stride: 8
-    # pretrained: https://bj.bcebos.com/paddleseg/dygraph/resnet50_vd_ssld_v2.tar.gz
-  enable_auxiliary_loss: True
-  align_corners: False
-  pretrained: null
-
 
 optimizer:
   type: sgd
   weight_decay: 0.0005
 
+
 loss:
   types:
     - type: CrossEntropyLoss
-  coef: [1, 0.4]
-
+    - type: CrossEntropyLoss
+    - type: CrossEntropyLoss
+    - type: CrossEntropyLoss
+    - type: CrossEntropyLoss
+  coef: [1, 1, 1, 1, 1]
 
 lr_scheduler:
   type: PolynomialDecay
   learning_rate: 0.01
+  end_lr: 0.0
   power: 0.9
-  end_lr: 1.0e-5
