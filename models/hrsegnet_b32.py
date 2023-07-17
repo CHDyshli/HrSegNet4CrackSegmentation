@@ -22,8 +22,8 @@ import paddle.nn.functional as F
 
 # If you need to use this model with paddleseg, you need to add it to the model library 
 # using manager.MODELS.add_component()
-# @manager.MODELS.add_component
-class HrSegNet(nn.Layer):
+@manager.MODELS.add_component
+class HrSegNetB32(nn.Layer):
     """
     The HrSegNet implementation based on PaddlePaddle.s
 
@@ -37,11 +37,13 @@ class HrSegNet(nn.Layer):
     def __init__(self,
                  in_channels=3, # input channel
                  base=32, # base channel of the model, 
-                 num_classes=2 # number of classes
+                 num_classes=2,  # number of classes
+                 pretrained=None
                  ):
-        super(HrSegNet, self).__init__()
+        super(HrSegNetB32, self).__init__()
         self.base = base
         self.num_classed = num_classes
+        self.pretrained = pretrained
         # Stage 1 and 2 constitute the stem of the model, which is mainly used to extract low-level features.
         # Meanwhile, stage1 and 2 reduce the input image to 1/2 and 1/4 of the original size respectively
         self.stage1 = nn.Sequential(
@@ -94,12 +96,15 @@ class HrSegNet(nn.Layer):
         
     
     def init_weight(self):
-        for m in self.sublayers():
-                if isinstance(m, nn.Conv2D):
-                    param_init.kaiming_normal_init(m.weight)
-                elif isinstance(m, nn.BatchNorm2D):
-                    param_init.constant_init(m.weight, value=1)
-                    param_init.constant_init(m.bias, value=0)
+        if self.pretrained is not None:
+            utils.load_entire_model(self, self.pretrained)
+        else:
+            for m in self.sublayers():
+                    if isinstance(m, nn.Conv2D):
+                        param_init.kaiming_normal_init(m.weight)
+                    elif isinstance(m, nn.BatchNorm2D):
+                        param_init.constant_init(m.weight, value=1)
+                        param_init.constant_init(m.bias, value=0)
     
 
 

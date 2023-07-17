@@ -30,14 +30,22 @@ val_dataset:
   transforms:
     - type: Normalize
 
+  
+  
 optimizer:
-  type: sgd
-
+  type: SGD
+  momentum: 0.9
+  weight_decay: 0.0005
 
 lr_scheduler:
   type: PolynomialDecay
   learning_rate: 0.01
+  end_lr: 0.0
   power: 0.9
+  warmup_iters: 2000
+  warmup_start_lr: 1.0e-5
+
+
 
 loss:
   types:
@@ -57,5 +65,5 @@ loss:
 model:
   type: OCRNet
   backbone:
-    type: HRNet_W18
+    type: HrSegB64
   backbone_indices: [0]

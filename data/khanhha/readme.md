@@ -1,1 +1,0 @@
-The data is sourced from [khanhha](https://github.com/khanhha/crack_segmentation).

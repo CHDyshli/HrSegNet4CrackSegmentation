@@ -26,7 +26,7 @@ except for the modification of the parameter base
 # If you need to use this model with paddleseg, you need to add it to the model library 
 # using manager.MODELS.add_component()
 @manager.MODELS.add_component
-class HrSegNetB16(nn.Layer):
+class HrSegNetB16D5(nn.Layer):
     """
     The HrSegNet implementation based on PaddlePaddle.s
 
@@ -40,13 +40,11 @@ class HrSegNetB16(nn.Layer):
     def __init__(self,
                  in_channels=3, # input channel
                  base=16, # base channel of the model, 
-                 num_classes=2, # number of classes
-                 pretrained=None # pretrained model
+                 num_classes=2 # number of classes
                  ):
-        super(HrSegNetB16, self).__init__()
+        super(HrSegNetB16D5, self).__init__()
         self.base = base
         self.num_classed = num_classes
-        self.pretrained = pretrained
         # Stage 1 and 2 constitute the stem of the model, which is mainly used to extract low-level features.
         # Meanwhile, stage1 and 2 reduce the input image to 1/2 and 1/4 of the original size respectively
         self.stage1 = nn.Sequential(
@@ -99,15 +97,12 @@ class HrSegNetB16(nn.Layer):
         
     
     def init_weight(self):
-        if self.pretrained is not None:
-            utils.load_entire_model(self, self.pretrained)
-        else:
-            for m in self.sublayers():
-                    if isinstance(m, nn.Conv2D):
-                        param_init.kaiming_normal_init(m.weight)
-                    elif isinstance(m, nn.BatchNorm2D):
-                        param_init.constant_init(m.weight, value=1)
-                        param_init.constant_init(m.bias, value=0)
+        for m in self.sublayers():
+                if isinstance(m, nn.Conv2D):
+                    param_init.kaiming_normal_init(m.weight)
+                elif isinstance(m, nn.BatchNorm2D):
+                    param_init.constant_init(m.weight, value=1)
+                    param_init.constant_init(m.bias, value=0)
     
 
 
@@ -129,6 +124,18 @@ class SegBlock(nn.Layer):
             nn.ReLU()
         )
         self.h_conv3 = nn.Sequential(
+            nn.Conv2D(in_channels=base, out_channels=base, kernel_size=3, stride=1, padding=1),
+            nn.BatchNorm2D(base),
+            nn.ReLU()
+        )
+
+        self.h_conv4 = nn.Sequential(
+            nn.Conv2D(in_channels=base, out_channels=base, kernel_size=3, stride=1, padding=1),
+            nn.BatchNorm2D(base),
+            nn.ReLU()
+        )
+
+        self.h_conv5 = nn.Sequential(
             nn.Conv2D(in_channels=base, out_channels=base, kernel_size=3, stride=1, padding=1),
             nn.BatchNorm2D(base),
             nn.ReLU()
@@ -171,9 +178,23 @@ class SegBlock(nn.Layer):
             nn.ReLU()
         )
 
+        self.l_conv4 = nn.Sequential(
+            nn.Conv2D(in_channels=base*int(math.pow(2, stage_index)), out_channels=base*int(math.pow(2, stage_index)), kernel_size=3, stride=1, padding=1),
+            nn.BatchNorm2D(base*int(math.pow(2, stage_index))),
+            nn.ReLU()
+        )
+
+        self.l_conv5 = nn.Sequential(
+            nn.Conv2D(in_channels=base*int(math.pow(2, stage_index)), out_channels=base*int(math.pow(2, stage_index)), kernel_size=3, stride=1, padding=1),
+            nn.BatchNorm2D(base*int(math.pow(2, stage_index))),
+            nn.ReLU()
+        )
+
         self.l2h_conv1 = nn.Conv2D(in_channels=base*int(math.pow(2, stage_index)), out_channels=base, kernel_size=1, stride=1, padding=0)
         self.l2h_conv2 = nn.Conv2D(in_channels=base*int(math.pow(2, stage_index)), out_channels=base, kernel_size=1, stride=1, padding=0)
         self.l2h_conv3 = nn.Conv2D(in_channels=base*int(math.pow(2, stage_index)), out_channels=base, kernel_size=1, stride=1, padding=0)
+        self.l2h_conv4 = nn.Conv2D(in_channels=base*int(math.pow(2, stage_index)), out_channels=base, kernel_size=1, stride=1, padding=0)
+        self.l2h_conv5 = nn.Conv2D(in_channels=base*int(math.pow(2, stage_index)), out_channels=base, kernel_size=1, stride=1, padding=0)
 
 
 
@@ -199,7 +220,19 @@ class SegBlock(nn.Layer):
         # print(out_l3.shape)
         out_l3_i = F.interpolate(out_l3, size=size, mode='bilinear', align_corners=True)
         out_hl3 = self.l2h_conv3(out_l3_i) + out_h3
-        return out_hl3
+
+        out_h4 = self.h_conv4(out_hl3)
+        out_l4 = self.l_conv4(out_l3)
+        # print(out_l4.shape)
+        out_l4_i = F.interpolate(out_l4, size=size, mode='bilinear', align_corners=True)
+        out_hl4 = self.l2h_conv4(out_l4_i) + out_h4
+
+        out_h5 = self.h_conv5(out_hl4)
+        out_l5 = self.l_conv5(out_l4)
+        # print(out_l5.shape)
+        out_l5_i = F.interpolate(out_l5, size=size, mode='bilinear', align_corners=True)
+        out_hl5 = self.l2h_conv5(out_l5_i) + out_h5
+        return out_hl5
 
 # seg head
 class SegHead(nn.Layer):
@@ -232,7 +265,7 @@ class SegHead(nn.Layer):
 
 
 # if __name__ == "__main__":
-#     model = HrSegNetB16()
+#     model = HrSegNetB16D5()
 #     x = paddle.randn([1, 3, 400, 400])
 #     out = model(x)
 #     print(out[0].shape)

@@ -9,10 +9,7 @@ from paddleseg.models.layers.layer_libs import SyncBatchNorm
 import paddle.nn.functional as F
 
 
-"""
-This file is identical to the default HrSegNet, 
-except for the modification of the parameter base
-"""
+
 
 # features
 # 1. The size of the high-resolution path remains constant throughout the process
@@ -26,7 +23,7 @@ except for the modification of the parameter base
 # If you need to use this model with paddleseg, you need to add it to the model library 
 # using manager.MODELS.add_component()
 @manager.MODELS.add_component
-class HrSegNetB16(nn.Layer):
+class HrSegNetB64(nn.Layer):
     """
     The HrSegNet implementation based on PaddlePaddle.s
 
@@ -35,15 +32,15 @@ class HrSegNetB16(nn.Layer):
         
         in_channels (int, optional): The channels of input image. Default: 3.
 
-        base (int, optional): The base channel number of the model. Default: 16.
+        base (int, optional): The base channel number of the model. Default: 48.
     """
     def __init__(self,
                  in_channels=3, # input channel
-                 base=16, # base channel of the model, 
+                 base=64, # base channel of the model, 
                  num_classes=2, # number of classes
-                 pretrained=None # pretrained model
+                 pretrained=None
                  ):
-        super(HrSegNetB16, self).__init__()
+        super(HrSegNetB64, self).__init__()
         self.base = base
         self.num_classed = num_classes
         self.pretrained = pretrained
@@ -232,7 +229,7 @@ class SegHead(nn.Layer):
 
 
 # if __name__ == "__main__":
-#     model = HrSegNetB16()
+#     model = HrSegNet()
 #     x = paddle.randn([1, 3, 400, 400])
 #     out = model(x)
 #     print(out[0].shape)

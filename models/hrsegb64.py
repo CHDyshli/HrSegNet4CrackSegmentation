@@ -9,10 +9,7 @@ from paddleseg.models.layers.layer_libs import SyncBatchNorm
 import paddle.nn.functional as F
 
 
-"""
-This file is identical to the default HrSegNet, 
-except for the modification of the parameter base
-"""
+
 
 # features
 # 1. The size of the high-resolution path remains constant throughout the process
@@ -25,8 +22,12 @@ except for the modification of the parameter base
 
 # If you need to use this model with paddleseg, you need to add it to the model library 
 # using manager.MODELS.add_component()
-@manager.MODELS.add_component
-class HrSegNetB16(nn.Layer):
+
+"""
+Removed seghead and retained backbone
+"""
+@manager.BACKBONES.add_component
+class HrSegB64(nn.Layer):
     """
     The HrSegNet implementation based on PaddlePaddle.s
 
@@ -35,18 +36,16 @@ class HrSegNetB16(nn.Layer):
         
         in_channels (int, optional): The channels of input image. Default: 3.
 
-        base (int, optional): The base channel number of the model. Default: 16.
+        base (int, optional): The base channel number of the model. Default: 48.
     """
     def __init__(self,
                  in_channels=3, # input channel
-                 base=16, # base channel of the model, 
-                 num_classes=2, # number of classes
-                 pretrained=None # pretrained model
+                 base=64, # base channel of the model, 
+                 num_classes=2 # number of classes
                  ):
-        super(HrSegNetB16, self).__init__()
+        super(HrSegB64, self).__init__()
         self.base = base
         self.num_classed = num_classes
-        self.pretrained = pretrained
         # Stage 1 and 2 constitute the stem of the model, which is mainly used to extract low-level features.
         # Meanwhile, stage1 and 2 reduce the input image to 1/2 and 1/4 of the original size respectively
         self.stage1 = nn.Sequential(
@@ -64,50 +63,34 @@ class HrSegNetB16(nn.Layer):
         self.seg2 = SegBlock(base=base, stage_index=2)
         self.seg3 = SegBlock(base=base, stage_index=3)
 
-        self.aux_head1 = SegHead(inplanes=base, interplanes=base, outplanes=num_classes, aux_head=True)
-        self.aux_head2 = SegHead(inplanes=base, interplanes=base, outplanes=num_classes, aux_head=True)
-        self.head = SegHead(inplanes=base, interplanes=base, outplanes=num_classes)
+        # self.aux_head1 = SegHead(inplanes=base, interplanes=base, outplanes=num_classes, aux_head=True)
+        # self.aux_head2 = SegHead(inplanes=base, interplanes=base, outplanes=num_classes, aux_head=True)
+        # self.head = SegHead(inplanes=base, interplanes=base, outplanes=num_classes)
 
+        self.feat_channels = [base]
         self.init_weight()
     
     def forward(self, x):
         logit_list = []
         h, w = paddle.shape(x)[2:]
         # aux_head only used in training
-        if self.training:
-            stem1_out = self.stage1(x)
-            stem2_out = self.stage2(stem1_out)
-            hrseg1_out = self.seg1(stem2_out)
-            hrseg2_out = self.seg2(hrseg1_out)
-            hrseg3_out = self.seg3(hrseg2_out)
-            last_out = self.head(hrseg3_out)
-            seghead1_out = self.aux_head1(hrseg1_out)
-            seghead2_out = self.aux_head2(hrseg2_out)
-            logit_list = [last_out, seghead1_out, seghead2_out]
-            logit_list = [F.interpolate(logit, size=(h, w), mode='bilinear', align_corners=True) for logit in logit_list]
-            return  logit_list
-        else:
-            stem1_out = self.stage1(x)
-            stem2_out = self.stage2(stem1_out)
-            hrseg1_out = self.seg1(stem2_out)
-            hrseg2_out = self.seg2(hrseg1_out)
-            hrseg3_out = self.seg3(hrseg2_out)
-            last_out = self.head(hrseg3_out)
-            logit_list = [last_out]
-            logit_list = [F.interpolate(logit, size=(h, w), mode='bilinear', align_corners=True) for logit in logit_list]
-            return  logit_list
+        stem1_out = self.stage1(x)
+        stem2_out = self.stage2(stem1_out)
+        hrseg1_out = self.seg1(stem2_out)
+        hrseg2_out = self.seg2(hrseg1_out)
+        hrseg3_out = self.seg3(hrseg2_out)
+        logit_list.append(hrseg3_out)
+        return  logit_list
+        
         
     
     def init_weight(self):
-        if self.pretrained is not None:
-            utils.load_entire_model(self, self.pretrained)
-        else:
-            for m in self.sublayers():
-                    if isinstance(m, nn.Conv2D):
-                        param_init.kaiming_normal_init(m.weight)
-                    elif isinstance(m, nn.BatchNorm2D):
-                        param_init.constant_init(m.weight, value=1)
-                        param_init.constant_init(m.bias, value=0)
+        for m in self.sublayers():
+                if isinstance(m, nn.Conv2D):
+                    param_init.kaiming_normal_init(m.weight)
+                elif isinstance(m, nn.BatchNorm2D):
+                    param_init.constant_init(m.weight, value=1)
+                    param_init.constant_init(m.bias, value=0)
     
 
 
@@ -232,7 +215,7 @@ class SegHead(nn.Layer):
 
 
 # if __name__ == "__main__":
-#     model = HrSegNetB16()
+#     model = HrSegNet()
 #     x = paddle.randn([1, 3, 400, 400])
 #     out = model(x)
 #     print(out[0].shape)

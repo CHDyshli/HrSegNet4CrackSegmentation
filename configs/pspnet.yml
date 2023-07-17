@@ -39,7 +39,6 @@ model:
   backbone:
     type: ResNet18_vd
     output_stride: 8
-    # pretrained: https://bj.bcebos.com/paddleseg/dygraph/resnet50_vd_ssld_v2.tar.gz
   enable_auxiliary_loss: True
   align_corners: False
   pretrained: null
