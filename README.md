@@ -10,6 +10,7 @@ The current trend in crack detection methods is leaning towards the use of machi
 * Add weight files pre-trained on CrackSeg9k，along with their corresponding training logs.
   
 2023-07-02
+
 We are conducting more comparative experiments while using a new pavement dataset that is being manually annotated at the expert level. The results and data will be published soon. We will release the trained model parameters so that you can quickly test them.
 ### Model Architecture  
 ![Alt text](./fig/fig1.png)
