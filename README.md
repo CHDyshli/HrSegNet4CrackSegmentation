@@ -8,6 +8,7 @@ The current trend in crack detection methods is leaning towards the use of machi
 2023-07-17
 * Add new datasets: [Asphalt3k](https://chdeducn-my.sharepoint.com/:u:/g/personal/2018024008_chd_edu_cn/EVj4M3fxfcFEuUToiO1QODEBtUuSPXE5FQONgNYti7PDFQ?e=IwZgXT), [Concrete3k](https://chdeducn-my.sharepoint.com/:u:/g/personal/2018024008_chd_edu_cn/Ef-1J7oMk7JHktzA8ildcYQBcqRaz0Er5Y29fN-VQ9SJbw?e=plD8oP). Asphalt3k sourced from [Yang](https://www.mdpi.com/2076-3417/12/19/10089), and Concrete3k sourced from [Wang](https://www.sciencedirect.com/science/article/pii/S0926580522001480).
 * Add weight files pre-trained on CrackSeg9k，along with their corresponding training logs.
+  
 2023-07-02
 We are conducting more comparative experiments while using a new pavement dataset that is being manually annotated at the expert level. The results and data will be published soon. We will release the trained model parameters so that you can quickly test them.
 ### Model Architecture  
