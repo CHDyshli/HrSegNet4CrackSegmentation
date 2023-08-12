@@ -5,6 +5,9 @@ Real-time High-Resolution Neural Network with Semantic Guidance for Crack Segmen
 The current trend in crack detection methods is leaning towards the use of machine learning or deep learning. This is because deep learning-based methods can autonomously extract features from images, thereby avoiding the low stability caused by manually designed operators. However, there are still some problems with the current deep learning-based crack segmentation algorithms. Firstly, the vast majority of research is based on the modification and improvement of commonly used scene segmentation algorithms, with no specifically designed for crack segmentation tasks. Secondly, crack detection is increasingly reliant on edge devices, such as drones and vehicle-mounted cameras. Therefore, the model must be lightweight to achieve real-time segmentation efficiency. However, there is currently limited research in this area. We propose a high-resolution neural network with semantic guidance for real-time crack segmentation, named HrSegNet.
 
 # Update 
+2023-08-12
+Update [Concrete3k](https://chdeducn-my.sharepoint.com/:u:/g/personal/2018024008_chd_edu_cn/EdzjOhykuQxDjRgs6k-5PU0BtJntPGtTo445f4lBv5HV4Q?e=MCOv5W). In the original Concrete3k, some of the images and labels did not match and we have updated and uploaded them. The results of the corresponding cross-dataset will also be updated.
+ 
 2023-07-17
 * Add new datasets: [Asphalt3k](https://chdeducn-my.sharepoint.com/:u:/g/personal/2018024008_chd_edu_cn/EVj4M3fxfcFEuUToiO1QODEBtUuSPXE5FQONgNYti7PDFQ?e=IwZgXT), [Concrete3k](https://chdeducn-my.sharepoint.com/:u:/g/personal/2018024008_chd_edu_cn/Ef-1J7oMk7JHktzA8ildcYQBcqRaz0Er5Y29fN-VQ9SJbw?e=plD8oP). Asphalt3k sourced from [Yang](https://www.mdpi.com/2076-3417/12/19/10089), and Concrete3k sourced from [Wang](https://www.sciencedirect.com/science/article/pii/S0926580522001480).
 * Add weight files pre-trained on CrackSeg9k，along with their corresponding training logs.
