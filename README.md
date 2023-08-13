@@ -6,10 +6,11 @@ The current trend in crack detection methods is leaning towards the use of machi
 
 # Update 
 2023-08-12
+
 Update [Concrete3k](https://chdeducn-my.sharepoint.com/:u:/g/personal/2018024008_chd_edu_cn/EdzjOhykuQxDjRgs6k-5PU0BtJntPGtTo445f4lBv5HV4Q?e=MCOv5W). In the original Concrete3k, some of the images and labels did not match and we have updated and uploaded them. The results of the corresponding cross-dataset will also be updated.
  
 2023-07-17
-* Add new datasets: [Asphalt3k](https://chdeducn-my.sharepoint.com/:u:/g/personal/2018024008_chd_edu_cn/EVj4M3fxfcFEuUToiO1QODEBtUuSPXE5FQONgNYti7PDFQ?e=IwZgXT), [Concrete3k](https://chdeducn-my.sharepoint.com/:u:/g/personal/2018024008_chd_edu_cn/Ef-1J7oMk7JHktzA8ildcYQBcqRaz0Er5Y29fN-VQ9SJbw?e=plD8oP). Asphalt3k sourced from [Yang](https://www.mdpi.com/2076-3417/12/19/10089), and Concrete3k sourced from [Wang](https://www.sciencedirect.com/science/article/pii/S0926580522001480).
+* Add new datasets: [Asphalt3k](https://chdeducn-my.sharepoint.com/:u:/g/personal/2018024008_chd_edu_cn/EVj4M3fxfcFEuUToiO1QODEBtUuSPXE5FQONgNYti7PDFQ?e=IwZgXT), [Concrete3k](https://chdeducn-my.sharepoint.com/:u:/g/personal/2018024008_chd_edu_cn/EdzjOhykuQxDjRgs6k-5PU0BtJntPGtTo445f4lBv5HV4Q?e=MCOv5W). Asphalt3k sourced from [Yang](https://www.mdpi.com/2076-3417/12/19/10089), and Concrete3k sourced from [Wang](https://www.sciencedirect.com/science/article/pii/S0926580522001480).
 * Add weight files pre-trained on CrackSeg9k，along with their corresponding training logs.
   
 2023-07-02
@@ -26,7 +27,7 @@ We are conducting more comparative experiments while using a new pavement datase
 # Data
 * [CrackSeg9k](https://github.com/Dhananjay42/crackseg9k) 
 * [Asphalt3k](https://chdeducn-my.sharepoint.com/:u:/g/personal/2018024008_chd_edu_cn/EVj4M3fxfcFEuUToiO1QODEBtUuSPXE5FQONgNYti7PDFQ?e=IwZgXT)
-* [Concrete3k](https://chdeducn-my.sharepoint.com/:u:/g/personal/2018024008_chd_edu_cn/Ef-1J7oMk7JHktzA8ildcYQBcqRaz0Er5Y29fN-VQ9SJbw?e=plD8oP)
+* [Concrete3k](https://chdeducn-my.sharepoint.com/:u:/g/personal/2018024008_chd_edu_cn/EdzjOhykuQxDjRgs6k-5PU0BtJntPGtTo445f4lBv5HV4Q?e=MCOv5W)
 
 We train the model on a comprehensive dataset (CrackSeg9k) and subsequently transfer to specific downstream scenarios, asphalt (Asphalt3k) and concrete (Concrete3k).
 # Installation
