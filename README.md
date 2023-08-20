@@ -7,7 +7,7 @@ The current trend in crack detection methods is leaning towards the use of machi
 # Update 
 2023-08-20
 
-A comparison of the three models has been added. We implemented these three models, and their files are in `models`. The trained model and logs are in [UNet_focal](https://chdeducn-my.sharepoint.com/:u:/g/personal/2018024008_chd_edu_cn/EcxRe1WntKdOtK-_O1pHIvEBwm-b9ohinTU-03JZ_Y4UMw?e=F7pqOM), [U2CrackNet](https://chdeducn-my.sharepoint.com/:u:/g/personal/2018024008_chd_edu_cn/EdSbeqvE-KtAtHjZj2-iS30BetzzRl9f2ockiASAgyea8A?e=3TwbYB), [RUCNet]().
+A comparison of the three models has been added. We implemented these three models, and their files are in `models`. The trained model and logs are in [UNet_focal](https://chdeducn-my.sharepoint.com/:u:/g/personal/2018024008_chd_edu_cn/EcxRe1WntKdOtK-_O1pHIvEBwm-b9ohinTU-03JZ_Y4UMw?e=F7pqOM), [U2CrackNet](https://chdeducn-my.sharepoint.com/:u:/g/personal/2018024008_chd_edu_cn/EdSbeqvE-KtAtHjZj2-iS30BetzzRl9f2ockiASAgyea8A?e=3TwbYB), [RUCNet](https://chdeducn-my.sharepoint.com/:u:/g/personal/2018024008_chd_edu_cn/EUbnDwGhVOZNuRrhe1Ksf0IBn7xrCjgaMVp5S5ehRJIkFA?e=3FuMHM).
 * Liu, Zhenqing, et al. "Computer vision-based concrete crack detection using U-net fully convolutional networks." Automation in Construction 104 (2019): 129-139.
 * Shi, Pengfei, et al. "U2CrackNet: a deeper architecture with two-level nested U-structure for pavement crack detection." Structural Health Monitoring 22.4 (2023): 2910-2921.
 * Yu, Gui, et al. "RUC-Net: A Residual-Unet-Based Convolutional Neural Network for Pixel-Level Pavement Crack Segmentation." Sensors 23.1 (2022): 53.
