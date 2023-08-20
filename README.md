@@ -5,6 +5,15 @@ Real-time High-Resolution Neural Network with Semantic Guidance for Crack Segmen
 The current trend in crack detection methods is leaning towards the use of machine learning or deep learning. This is because deep learning-based methods can autonomously extract features from images, thereby avoiding the low stability caused by manually designed operators. However, there are still some problems with the current deep learning-based crack segmentation algorithms. Firstly, the vast majority of research is based on the modification and improvement of commonly used scene segmentation algorithms, with no specifically designed for crack segmentation tasks. Secondly, crack detection is increasingly reliant on edge devices, such as drones and vehicle-mounted cameras. Therefore, the model must be lightweight to achieve real-time segmentation efficiency. However, there is currently limited research in this area. We propose a high-resolution neural network with semantic guidance for real-time crack segmentation, named HrSegNet.
 
 # Update 
+2023-08-20
+
+A comparison of the three models has been added. We implemented these three models, and their files are in `models`. The trained model and logs are in [UNet_focal](https://chdeducn-my.sharepoint.com/:u:/g/personal/2018024008_chd_edu_cn/EcxRe1WntKdOtK-_O1pHIvEBwm-b9ohinTU-03JZ_Y4UMw?e=F7pqOM), [U2CrackNet](https://chdeducn-my.sharepoint.com/:u:/g/personal/2018024008_chd_edu_cn/EdSbeqvE-KtAtHjZj2-iS30BetzzRl9f2ockiASAgyea8A?e=3TwbYB), [RUCNet]().
+* Liu, Zhenqing, et al. "Computer vision-based concrete crack detection using U-net fully convolutional networks." Automation in Construction 104 (2019): 129-139.
+* Shi, Pengfei, et al. "U2CrackNet: a deeper architecture with two-level nested U-structure for pavement crack detection." Structural Health Monitoring 22.4 (2023): 2910-2921.
+* Yu, Gui, et al. "RUC-Net: A Residual-Unet-Based Convolutional Neural Network for Pixel-Level Pavement Crack Segmentation." Sensors 23.1 (2022): 53.
+
+
+
 2023-08-12
 
 Update [Concrete3k](https://chdeducn-my.sharepoint.com/:u:/g/personal/2018024008_chd_edu_cn/EdzjOhykuQxDjRgs6k-5PU0BtJntPGtTo445f4lBv5HV4Q?e=MCOv5W). In the original Concrete3k, some of the images and labels did not match and we have updated and uploaded them. The results of the corresponding cross-dataset will also be updated.
