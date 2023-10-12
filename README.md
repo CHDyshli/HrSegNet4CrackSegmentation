@@ -79,13 +79,14 @@ We expose all our models as TensorRT, including SOTA for comparison in all exper
 
 # Cite
 ```
-@misc{li2023hrsegnet,
-      title={HrSegNet : Real-time High-Resolution Neural Network with Semantic Guidance for Crack Segmentation}, 
-      author={Yongshang Li and Ronggui Ma and Han Liu and Gaoli Cheng},
-      year={2023},
-      eprint={2307.00270},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV}
+@article{li2023real,
+  title={Real-time high-resolution neural network with semantic guidance for crack segmentation},
+  author={Li, Yongshang and Ma, Ronggui and Liu, Han and Cheng, Gaoli},
+  journal={Automation in Construction},
+  volume={156},
+  pages={105112},
+  year={2023},
+  publisher={Elsevier}
 }
 ```
 
