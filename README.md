@@ -90,10 +90,10 @@ If you find this project helpful for your research, please consider citing the f
   publisher={Elsevier}
 }
 
-## Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=CHDyshli/HrSegNet4CrackSegmentation&type=Date)](https://star-history.com/#CHDyshli/HrSegNet4CrackSegmentation&Date)
 ```
 
+# Star History
 
+[![Star History Chart](https://api.star-history.com/svg?repos=CHDyshli/HrSegNet4CrackSegmentation&type=Date)](https://star-history.com/#CHDyshli/HrSegNet4CrackSegmentation&Date)
 
